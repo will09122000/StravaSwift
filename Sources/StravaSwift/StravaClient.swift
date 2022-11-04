@@ -93,6 +93,7 @@ extension StravaClient: ASWebAuthenticationPresentationContextProviding {
      */
     public func authorize(result: @escaping AuthorizationHandler) {
         let appAuthorizationUrl = Router.appAuthorizationUrl
+     /*
         if UIApplication.shared.canOpenURL(appAuthorizationUrl) {
             currentAuthorizationHandler = result    // Stores the handler to be executed once `handleAuthorizationRedirect(url:)` is called
             if #available(iOS 10.0, *) {
@@ -101,6 +102,7 @@ extension StravaClient: ASWebAuthenticationPresentationContextProviding {
                 UIApplication.shared.openURL(appAuthorizationUrl)
             }
         } else {
+     */
             if #available(iOS 12.0, *) {
                 let webAuthenticationSession = ASWebAuthenticationSession(url: Router.webAuthorizationUrl,
                                                                           callbackURLScheme: config?.redirectUri,
@@ -120,7 +122,7 @@ extension StravaClient: ASWebAuthenticationPresentationContextProviding {
                 currentAuthorizationHandler = result    // Stores the handler to be executed once `handleAuthorizationRedirect(url:)` is called
                 UIApplication.shared.open(Router.webAuthorizationUrl, options: [:])
             }
-        }
+        //}
     }
 
     /**
